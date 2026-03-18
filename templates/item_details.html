@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Item Details{% endblock %}
+
+{% block content %}
+<div class="center-page">
+    <h2>{{ item['item_name'] }} ({{ item['status'].capitalize() }})</h2>
+    <p><strong>Description:</strong> {{ item['description'] }}</p>
+    <p><strong>Location:</strong> {{ item['location'] or 'N/A' }}</p>
+    <p><strong>Reported by:</strong> {{ item['reported_by'] }}</p>
+    <p><strong>Date:</strong> {{ item['date'] or 'N/A' }}</p>
+    <a href="{{ url_for('search') }}" class="button">Back to Search</a>
+</div>
+{% endblock %}

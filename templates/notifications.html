@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block content %}
+<div class="center-page">
+    <h2 class="form-title">Notifications</h2>
+
+    {% if notifications %}
+    <ul class="notification-list">
+        {% for n in notifications %}
+        <li class="{{ 'unread' if n.read==0 else '' }}">
+            <strong>{{ n.item_name }}</strong>
+            ({{ n.status|capitalize }}) - {{ n.message }}
+            <br>
+            <small>{{ n.created_at }}</small>
+            {% if n.read==0 %}
+            <!-- <a href="{{ url_for('mark_read', id=n['id']) }}" class="button"> -->
+
+            <a href="{{ url_for('mark_read', id=n.id) }}" class="button" style="margin-left:10px;">Mark as Read</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="no-items">No notifications available.</p>
+    {% endif %}
+</div>
+{% endblock %}
